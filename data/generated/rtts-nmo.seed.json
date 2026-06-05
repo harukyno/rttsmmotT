@@ -1,0 +1,285 @@
+{
+  "skills": [
+    {
+      "id": "walk",
+      "name": "歩行",
+      "kind": "move",
+      "apCost": 1,
+      "mpCost": 0,
+      "spCost": 0,
+      "rangeM": "self",
+      "description": "SPD/2mまで移動する。",
+      "source": {
+        "sheet": "Google Doc 基本ルールブック",
+        "range": "2.2 SPD, 4.3, GM戦闘マップ",
+        "note": "documentId=1mwi_0FxkAvcMfN1PxU-Hz6NzMsJb0ugFfaftnJSup68; v0 action skill"
+      }
+    },
+    {
+      "id": "basic_melee",
+      "name": "ただ武器を振るう",
+      "kind": "attack",
+      "apCost": 2,
+      "mpCost": 0,
+      "spCost": 10,
+      "rangeM": 2,
+      "description": "基本近接攻撃。",
+      "source": {
+        "sheet": "Google Doc 基本ルールブック",
+        "range": "4.2, 6.1-6.2",
+        "note": "documentId=1mwi_0FxkAvcMfN1PxU-Hz6NzMsJb0ugFfaftnJSup68; v0 combat skill"
+      }
+    },
+    {
+      "id": "guard_wait",
+      "name": "防御待機",
+      "kind": "wait",
+      "apCost": 1,
+      "mpCost": 0,
+      "spCost": 0,
+      "rangeM": "self",
+      "description": "手番を防御姿勢で終了する。30秒タイムアウト時にも自動実行される。",
+      "source": {
+        "sheet": "Google Doc 基本ルールブック",
+        "range": "4.2, 6.2",
+        "note": "documentId=1mwi_0FxkAvcMfN1PxU-Hz6NzMsJb0ugFfaftnJSup68; v0 timeout fallback skill"
+      }
+    }
+  ],
+  "items": [
+    {
+      "id": "weapon_sample_1",
+      "name": "無智なる鞭",
+      "kind": "weapon",
+      "price": 52157.97,
+      "weightKg": 0.62,
+      "details": "武器種類：槍斧 持ち手： 片手武器 \n HP：40 DEF：119 PRT：1\n 射程m：1.5\n 衝撃威力：3+1D4 斬撃威力：24+1D29 貫通威力：3+1D4 命中補正：6 防御威力：0 防御補正：17\n 与ダメージ時付与： [火]耐性：0.71",
+      "source": {
+        "workbook": "C:\\Users\\haruk\\Downloads\\RTTS NMO.xlsx",
+        "sheet": "近接武器",
+        "range": "BH8",
+        "note": "Curated v0 weapon sample"
+      }
+    },
+    {
+      "id": "ammo_sample_1",
+      "name": "弾薬",
+      "kind": "ammo",
+      "price": 14726471.92,
+      "weightKg": 63.87,
+      "details": "sourceSheet:弾薬 price:14726471.92 weightKg:63.87",
+      "source": {
+        "workbook": "C:\\Users\\haruk\\Downloads\\RTTS NMO.xlsx",
+        "sheet": "弾薬",
+        "range": "BH6:BS8",
+        "note": "Curated v0 ammo sample"
+      }
+    },
+    {
+      "id": "firearm_sample_1",
+      "name": "B.I.G-535-NAP-HG",
+      "kind": "weapon",
+      "price": 1031.07,
+      "weightKg": 0.01,
+      "details": "sourceSheet:B.I.G-535-NAP-HG price:1031.07 weightKg:0.01",
+      "source": {
+        "workbook": "C:\\Users\\haruk\\Downloads\\RTTS NMO.xlsx",
+        "sheet": "B.I.G-535-NAP-HG",
+        "range": "BH6:BS8",
+        "note": "Curated v0 firearm sample"
+      }
+    },
+    {
+      "id": "armor_sample_1",
+      "name": "革の胸当て",
+      "kind": "armor",
+      "price": 6516.38988,
+      "weightKg": 4.46,
+      "details": "HP:13 DEF:19 weightKg:4.46 materialCost:6516.38988",
+      "source": {
+        "workbook": "C:\\Users\\haruk\\Downloads\\RTTS NMO.xlsx",
+        "sheet": "革の胸当て",
+        "range": "AE17:AE19,T19:T20",
+        "note": "Curated v0 armor sample"
+      }
+    }
+  ],
+  "materials": [
+    {
+      "id": "material_銑鉄",
+      "name": "銑鉄",
+      "density": 0.007,
+      "amr": 0.1,
+      "def": 100,
+      "hp": 50,
+      "tgh": 0.2,
+      "source": {
+        "workbook": "C:\\Users\\haruk\\Downloads\\RTTS NMO.xlsx",
+        "sheet": "工業素材",
+        "range": "D2:D7",
+        "note": "Curated v0 material row set"
+      }
+    },
+    {
+      "id": "material_鋳鉄",
+      "name": "鋳鉄",
+      "density": 0.0072,
+      "amr": 0.3,
+      "def": 120,
+      "hp": 150,
+      "tgh": 0.3,
+      "source": {
+        "workbook": "C:\\Users\\haruk\\Downloads\\RTTS NMO.xlsx",
+        "sheet": "工業素材",
+        "range": "E2:E7",
+        "note": "Curated v0 material row set"
+      }
+    },
+    {
+      "id": "material_錬鉄",
+      "name": "錬鉄",
+      "density": 0.0077,
+      "amr": 0.4,
+      "def": 190,
+      "hp": 220,
+      "tgh": 1.5,
+      "source": {
+        "workbook": "C:\\Users\\haruk\\Downloads\\RTTS NMO.xlsx",
+        "sheet": "工業素材",
+        "range": "F2:F7",
+        "note": "Curated v0 material row set"
+      }
+    },
+    {
+      "id": "material_鍛鉄",
+      "name": "鍛鉄",
+      "density": 0.0078,
+      "amr": 0.7,
+      "def": 205,
+      "hp": 350,
+      "tgh": 2.5,
+      "source": {
+        "workbook": "C:\\Users\\haruk\\Downloads\\RTTS NMO.xlsx",
+        "sheet": "工業素材",
+        "range": "G2:G7",
+        "note": "Curated v0 material row set"
+      }
+    },
+    {
+      "id": "material_鋼鉄",
+      "name": "鋼鉄",
+      "density": 0.00785,
+      "amr": 1,
+      "def": 210,
+      "hp": 450,
+      "tgh": 2,
+      "source": {
+        "workbook": "C:\\Users\\haruk\\Downloads\\RTTS NMO.xlsx",
+        "sheet": "工業素材",
+        "range": "H2:H7",
+        "note": "Curated v0 material row set"
+      }
+    },
+    {
+      "id": "material_バベル鋼_wh_14",
+      "name": "バベル鋼-wh-14",
+      "density": 0.008,
+      "amr": 1.01,
+      "def": 215,
+      "hp": 460,
+      "tgh": 2.25,
+      "source": {
+        "workbook": "C:\\Users\\haruk\\Downloads\\RTTS NMO.xlsx",
+        "sheet": "工業素材",
+        "range": "I2:I7",
+        "note": "Curated v0 material row set"
+      }
+    }
+  ],
+  "magic": [
+    {
+      "id": "magic_マギシールド",
+      "name": "マギシールド",
+      "description": "[反応行動][防御]                   \n[結界]をX獲得する",
+      "intCost": 3,
+      "mpCost": "X",
+      "apCost": 1,
+      "source": {
+        "workbook": "C:\\Users\\haruk\\Downloads\\RTTS NMO.xlsx",
+        "sheet": "魔法",
+        "range": "D13:D19",
+        "note": "six-color"
+      }
+    },
+    {
+      "id": "magic_アクセラップ",
+      "name": "アクセラップ",
+      "description": "[反応行動][回避]\n回避判定：DEX+2dX [回避]\nこの回避判定は近接攻撃の命中判定以外に対して値を2倍にする\n移動距離：1d(2*X)m(人のみ)",
+      "intCost": 2,
+      "mpCost": "X",
+      "apCost": 1,
+      "source": {
+        "workbook": "C:\\Users\\haruk\\Downloads\\RTTS NMO.xlsx",
+        "sheet": "魔法",
+        "range": "D21:D27",
+        "note": "six-color"
+      }
+    },
+    {
+      "id": "magic_アンブラッド",
+      "name": "アンブラッド",
+      "description": "射程距離　(X/5)m\n対象の[出血] を(X/5)　  低下させる",
+      "intCost": 3,
+      "mpCost": "X",
+      "apCost": 1,
+      "source": {
+        "workbook": "C:\\Users\\haruk\\Downloads\\RTTS NMO.xlsx",
+        "sheet": "魔法",
+        "range": "D29:D35",
+        "note": "six-color"
+      }
+    },
+    {
+      "id": "magic_クラウ_工事中",
+      "name": "クラウ-工事中",
+      "description": "射程：Xm\n対象のHPを(X/2)回復\n(自分を対象に取ることも可能)",
+      "intCost": 5,
+      "mpCost": "X",
+      "apCost": 1,
+      "source": {
+        "workbook": "C:\\Users\\haruk\\Downloads\\RTTS NMO.xlsx",
+        "sheet": "魔法",
+        "range": "V13:V19",
+        "note": "chant"
+      }
+    },
+    {
+      "id": "magic_エイ_へァラコ",
+      "name": "エイ・へァラコ",
+      "description": "[反応行動][味方]\n味方を対象とした反応行動としても扱える\n射程　Xm\n(X/5)だけ自分以外の味方にAMRを与える\nその効果は威力を受けた場合その処理終了後に消失する",
+      "intCost": 4,
+      "mpCost": "X",
+      "apCost": 1,
+      "source": {
+        "workbook": "C:\\Users\\haruk\\Downloads\\RTTS NMO.xlsx",
+        "sheet": "魔法",
+        "range": "V21:V27",
+        "note": "chant"
+      }
+    },
+    {
+      "id": "magic_愚かなる判断",
+      "name": "愚かなる判断",
+      "description": "射程：Xm\n超常判定：X+1dX\n判定成功時　MPをもう一度強制的に消費しMPが不足した場合はその分SANを減少させ\nもう一度判定を行い、SANの最大値が0の場合以外、失敗するまで行う　\n成功した回数をYとする。\n超常威力：YdX",
+      "intCost": 2,
+      "mpCost": "X",
+      "apCost": 1,
+      "source": {
+        "workbook": "C:\\Users\\haruk\\Downloads\\RTTS NMO.xlsx",
+        "sheet": "魔法",
+        "range": "V29:V35",
+        "note": "chant"
+      }
+    }
+  ]
+}

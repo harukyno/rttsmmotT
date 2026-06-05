@@ -1,0 +1,52 @@
+{
+  "skills": [
+    {
+      "id": "walk",
+      "name": "歩行",
+      "kind": "move",
+      "apCost": 1,
+      "mpCost": 0,
+      "spCost": 0,
+      "rangeM": "self",
+      "description": "SPD/2mまで移動する。",
+      "source": {
+        "sheet": "Google Doc 基本ルールブック",
+        "range": "2.2 SPD, 4.3, GM戦闘マップ",
+        "note": "documentId=1mwi_0FxkAvcMfN1PxU-Hz6NzMsJb0ugFfaftnJSup68; v0 action skill"
+      }
+    },
+    {
+      "id": "basic_melee",
+      "name": "ただ武器を振るう",
+      "kind": "attack",
+      "apCost": 2,
+      "mpCost": 0,
+      "spCost": 10,
+      "rangeM": 2,
+      "description": "基本近接攻撃。",
+      "source": {
+        "sheet": "Google Doc 基本ルールブック",
+        "range": "4.2, 6.1-6.2",
+        "note": "documentId=1mwi_0FxkAvcMfN1PxU-Hz6NzMsJb0ugFfaftnJSup68; v0 combat skill"
+      }
+    },
+    {
+      "id": "guard_wait",
+      "name": "防御待機",
+      "kind": "wait",
+      "apCost": 1,
+      "mpCost": 0,
+      "spCost": 0,
+      "rangeM": "self",
+      "description": "手番を防御姿勢で終了する。30秒タイムアウト時にも自動実行される。",
+      "source": {
+        "sheet": "Google Doc 基本ルールブック",
+        "range": "4.2, 6.2",
+        "note": "documentId=1mwi_0FxkAvcMfN1PxU-Hz6NzMsJb0ugFfaftnJSup68; v0 timeout fallback skill"
+      }
+    }
+  ],
+  "items": [],
+  "materials": [],
+  "magic": []
+}

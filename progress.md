@@ -1,0 +1,91 @@
+Original prompt: Build an RTTS MMO demo for Render.com: one shard, Google OAuth sign-in, server-authoritative AP turn sync with 30-second clocks, server-filtered vision, and multiplayer success as the primary goal.
+
+## 2026-06-05
+
+- Implemented a TypeScript monorepo with shared rules/types, Express/ws server, React tactical client, data import, Render config, auth, persistence, and tests.
+- Closed an active actor visibility leak: snapshots, turn_started, and timer_tick now filter activeActorId per observer visibility/remembered data.
+- Verification passed:
+  - npm.cmd test: 26 tests
+  - npm.cmd run typecheck
+  - npm.cmd run build
+  - npm.cmd audit --omit=dev: 0 vulnerabilities
+  - npm.cmd run import:data: 4 items, 6 materials, 6 magic definitions
+- Started the local server at http://localhost:3000 with ALLOW_DEV_AUTH=true.
+- HTTP smoke passed: /auth/dev creates a session, /api/me returns the dev user, and /api/shards/demo-1 returns 200.
+- In-app browser automation could not attach in this environment; the browser runtime failed during setup twice with a local sandbox spawn setup error.
+- Added npm run smoke:multiplayer. It creates two dev-auth sessions, connects two WebSocket clients, confirms distinct actors on demo-1, checks shared timer turnVersion, submits guard_wait for the active smoke player, and verifies the other client receives the resolved action.
+- npm.cmd run smoke:multiplayer passed against http://127.0.0.1:3000: actors pc-5 and pc-6, syncedTurnVersion 38732, actionActorId pc-6, advancedTurnVersion 38733.
+- Re-ran npm.cmd test and npm.cmd run build successfully after adding the smoke script.
+- Google Doc source was readable through the Drive connector. Confirmed the v0 base rules used by the implementation: AP starts at 10, initiative is remaining AP then SPD, AP is recalculated after each action, simultaneous skills pay highest AP only, and MP/SP costs are summed.
+- Google Sheets metadata reads for the three linked spreadsheets returned Sheets API 429 RATE_LIMIT_EXCEEDED from the connector project, so v0 continues to use curated skill seed plus local RTTS NMO.xlsx imports.
+- Added `data/source-audit.md` and source metadata to the v0 skills in `data/seed.json`; regenerated `data/generated/rtts-nmo.seed.json`.
+- Re-ran verification after source metadata changes:
+  - npm.cmd run import:data
+  - npm.cmd test: 26 tests
+  - npm.cmd run typecheck
+  - npm.cmd run build
+  - npm.cmd run smoke:multiplayer: actors pc-7 and pc-8, syncedTurnVersion 39136, actionActorId pc-8, advancedTurnVersion 39137.
+- Refactored server route registration into `packages/server/src/app.ts` so OAuth and API routes can be integration-tested without launching the production entrypoint.
+- Added a mocked Google OAuth integration test covering `/auth/google/start` -> `/auth/google/callback` -> session cookie -> `/api/me`, plus invalid state rejection before token exchange.
+- Added `npm run check:render` with `scripts/check-render-readiness.ts` to verify Render service, Postgres wiring, build/start commands, required OAuth env vars, and generated seed coverage.
+- Re-ran verification after OAuth/Render readiness work:
+  - npm.cmd test: 28 tests
+  - npm.cmd run check:render
+  - npm.cmd run typecheck
+  - npm.cmd run build
+  - npm.cmd run smoke:multiplayer: actors pc-9 and pc-10, syncedTurnVersion 43851, actionActorId pc-9, advancedTurnVersion 43852.
+- Added browser-smoke state hooks in the React client:
+  - `window.render_game_to_text()`
+  - hidden `[data-testid="render-game-state"]`
+  - stable test ids for login, map, and command buttons.
+- Restarted the local server with the latest production build and verified in the in-app browser:
+  - Dev Sign In works.
+  - WebSocket connection reaches `open`.
+  - Browser joins `demo-1` as `pc-1`.
+  - Initial browser state had `canAct=true`, `activeActorId=pc-1`, `turnVersion=1`, and visible actors.
+  - Clicking the 防御 button advanced browser-visible state to `turnVersion=4` with no console errors.
+  - DOM snapshot confirmed HUD, map commands, vision panel, and action log render.
+  - Browser screenshot capture timed out twice in CDP; DOM and state-probe verification succeeded.
+- Fixed `scripts/smoke-multiplayer.ts` wait loop to avoid re-consuming old messages in a tight loop. This had caused an out-of-memory failure when other connected actors delayed the smoke clients' owned turn.
+- Re-ran verification after browser hook and smoke fix:
+  - npm.cmd run typecheck
+  - npm.cmd run build
+  - npm.cmd test: 28 tests
+  - npm.cmd run check:render
+  - npm.cmd audit --omit=dev: 0 vulnerabilities
+  - npm.cmd run smoke:multiplayer: actors pc-4 and pc-5, syncedTurnVersion 31, actionActorId pc-4, advancedTurnVersion 33.
+- Added demo operations hardening:
+  - Root `package.json` now requires Node `>=22.12.0`.
+  - `render.yaml` now pins `NODE_VERSION=22.12.0`.
+  - `npm run check:render` now verifies both Node version pins.
+  - Added dev-only `POST /api/dev/reset-shard`; it is available only while `ALLOW_DEV_AUTH=true`.
+  - Added server tests proving reset works in dev mode and returns 404 when dev auth is disabled.
+  - `npm run smoke:multiplayer` now resets the local shard before opening its two clients when the dev reset route is available, preventing repeated smoke runs from filling the 20-player demo cap.
+- Re-ran verification after reset/Node version hardening:
+  - npm.cmd test: 30 tests
+  - npm.cmd run check:render
+  - npm.cmd audit --omit=dev: 0 vulnerabilities
+  - npm.cmd run typecheck
+  - npm.cmd run build
+  - npm.cmd run smoke:multiplayer: actors pc-1 and pc-2, syncedTurnVersion 1, actionActorId pc-1, advancedTurnVersion 2.
+- In-app browser was open at http://localhost:3000 but became unavailable to the Browser runtime during this turn (`iab` unavailable after reconnect). HTTP/WebSocket fallback checks passed against the latest server.
+- Prepared the repo for Render Dashboard Blueprint deployment:
+  - Added `docs/render-deploy.md` with Dashboard steps, required env vars, Google OAuth callback URI, and post-deploy verification.
+  - Added `.node-version` with `22.12.0`.
+  - Tightened root `package.json` engines to `>=22.12.0 <23`.
+  - Updated `npm run check:render` for the bounded Node version requirement.
+  - Added production config tests covering missing Render/OAuth/Postgres env vars and rejection of the dev session secret in production.
+- Re-ran Render/deploy verification:
+  - npm.cmd test: 33 tests
+  - npm.cmd run check:render
+  - npm.cmd run typecheck
+  - npm.cmd run build
+  - npm.cmd audit --omit=dev: 0 vulnerabilities
+  - npm.cmd run smoke:multiplayer: actors pc-1 and pc-2, syncedTurnVersion 1, actionActorId pc-1, advancedTurnVersion 2.
+- Direct deployment from this local environment is currently blocked because there is no configured Git remote, no Render CLI, no GitHub CLI, and no `RENDER_API_KEY`/GitHub token in the environment.
+
+## TODO
+
+- Browser screenshot capture still needs a stable path; current in-app browser state/DOM checks pass, but CDP screenshot capture timed out.
+- Retry Google Sheets reads after connector quota resets; if readable, expand skill/action import beyond the curated v0 seed.
+- Production Google OAuth callback and Render deployment still need real environment credentials and a pushed Git repository connected to Render.

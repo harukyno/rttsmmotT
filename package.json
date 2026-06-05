@@ -1,0 +1,47 @@
+{
+  "name": "rtts-mmo-web",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "engines": {
+    "node": ">=22.12.0 <23"
+  },
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "dev": "npm run dev -w @rtts/server",
+    "build": "npm run build -w @rtts/shared && npm run build -w @rtts/client && npm run build -w @rtts/server",
+    "test": "vitest run",
+    "typecheck": "npm run build -w @rtts/shared && npm run typecheck -w @rtts/client && npm run typecheck -w @rtts/server",
+    "import:data": "tsx scripts/import-rtts-nmo.ts",
+    "check:render": "tsx scripts/check-render-readiness.ts",
+    "smoke:multiplayer": "tsx scripts/smoke-multiplayer.ts",
+    "start": "node packages/server/dist/index.js"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.0",
+    "@types/node": "^24.0.0",
+    "@types/pg": "^8.11.10",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "@types/ws": "^8.5.13",
+    "@vitejs/plugin-react": "^5.2.0",
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.2",
+    "vite": "^7.3.5",
+    "vitest": "^4.1.8"
+  },
+  "dependencies": {
+    "@vitejs/plugin-basic-ssl": "^2.0.0",
+    "cookie": "^1.0.2",
+    "express": "^5.1.0",
+    "fflate": "^0.8.2",
+    "lucide-react": "^0.468.0",
+    "nanoid": "^5.0.9",
+    "pg": "^8.13.1",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "ws": "^8.18.0"
+  }
+}
