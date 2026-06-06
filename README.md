@@ -41,7 +41,7 @@ Invoke-WebRequest -Uri http://localhost:3000/api/dev/reset-shard -Method Post -U
 
 ## Render
 
-The repo includes `render.yaml`. Required environment variables:
+The repo includes `render.yaml`. It uses Render free instance types for the first demo deploy. Free web services can spin down when idle, and Free Render Postgres expires after 30 days. Required environment variables:
 
 - `APP_ORIGIN`
 - `SESSION_SECRET`

@@ -60,9 +60,12 @@ The service uses:
 
 - Runtime: Node
 - Node version: `22.12.0`
+- Plan: `free`
 - Build command: `npm ci && npm run import:data && npm run build`
 - Start command: `npm start`
 - Health check: `/api/health`
+
+The v0 Blueprint uses Render's free instance types so the demo can be deployed without adding payment information. Free web services can spin down when idle, and Free Render Postgres databases expire 30 days after creation. Upgrade both `plan` fields in `render.yaml` later for stable play sessions.
 
 ## Required Environment Variables
 

@@ -2,7 +2,7 @@ services:
   - type: web
     name: rtts-mmo-demo
     runtime: node
-    plan: starter
+    plan: free
     buildCommand: npm ci && npm run import:data && npm run build
     startCommand: npm start
     healthCheckPath: /api/health
@@ -26,4 +26,4 @@ services:
 
 databases:
   - name: rtts-mmo-demo-db
-    plan: starter
+    plan: free
