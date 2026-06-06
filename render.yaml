@@ -3,7 +3,7 @@ services:
     name: rtts-mmo-demo
     runtime: node
     plan: free
-    buildCommand: npm ci && npm run import:data && npm run build
+    buildCommand: npm ci --include=dev && npm run import:data && npm run build
     startCommand: npm start
     healthCheckPath: /api/health
     envVars:

@@ -61,7 +61,7 @@ The service uses:
 - Runtime: Node
 - Node version: `22.12.0`
 - Plan: `free`
-- Build command: `npm ci && npm run import:data && npm run build`
+- Build command: `npm ci --include=dev && npm run import:data && npm run build`
 - Start command: `npm start`
 - Health check: `/api/health`
 

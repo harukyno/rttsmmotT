@@ -10,7 +10,7 @@ const checks = [
   ["Render uses Node runtime", /runtime:\s*node/.test(renderYaml)],
   ["Render pins Node version", /key:\s*NODE_VERSION\s*\n\s*value:\s*22\.12\.0/.test(renderYaml)],
   ["package constrains Node to 22.x", packageJson.engines?.node === ">=22.12.0 <23"],
-  ["Render build imports data before build", /buildCommand:\s*npm ci && npm run import:data && npm run build/.test(renderYaml)],
+  ["Render build installs dev tooling and imports data before build", /buildCommand:\s*npm ci --include=dev && npm run import:data && npm run build/.test(renderYaml)],
   ["Render starts production server", /startCommand:\s*npm start/.test(renderYaml)],
   ["Render health check points at API", /healthCheckPath:\s*\/api\/health/.test(renderYaml)],
   ["Render provisions Postgres", /databases:\s*[\s\S]*name:\s*rtts-mmo-demo-db/.test(renderYaml)],
